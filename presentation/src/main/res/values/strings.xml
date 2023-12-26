@@ -1,0 +1,90 @@
+<resources>
+
+    <string name="app_name" translatable="false">TussApp</string>
+
+    <string name="home">Home</string>
+    <string name="lines">Lines</string>
+    <string name="cards">Cards</string>
+    <string name="stop_estimates">Estimates</string>
+    <string name="stops">Stops</string>
+    <string name="about">About</string>
+
+    <string name="action_retry">Retry</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_back">Back</string>
+    <string name="action_add_to_favorites">Add to favorites</string>
+    <string name="action_remove_from_favorites">Remove from favorites</string>
+    <string name="action_remove_open_in_map">Open in map</string>
+    <string name="action_recharge_card">Recharge card</string>
+    <string name="action_add_card">Add card</string>
+    <string name="action_add">Add</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_save">Save</string>
+
+    <string name="error_generic">Error</string>
+    <string name="error_generic_with_http_code">Error %d</string>
+    <string name="error_generic_description">An error occurred. Wait a few seconds and try again.</string>
+
+    <string name="error_connection_error">Connection error</string>
+    <string name="error_connection_error_description">An error occurred while connecting to the server. Check your connection or try again later.</string>
+
+    <string name="error_timeout_error">Connection timed out</string>
+    <string name="error_timeout_error_description">Server took too long to respond. Check your connection or try again later.</string>
+
+    <string name="error_empty_response_error">Empty response</string>
+    <string name="error_empty_response_error_description">The response was empty when it shouldn\'t. Try again later.</string>
+
+    <string name="line_format">Line %s</string>
+    <string name="stop_format">Stop %d</string>
+    <string name="direction_format">Direction %d</string>
+
+    <string name="home_favorite_stops_title">Favorite stops</string>
+    <string name="home_favorite_stops_empty">You don\'t have any favorite stops, search for one and save it in your favorites to be featured here!</string>
+    <string name="home_notices_title">Notices</string>
+    <string name="home_notices_empty">No recent notices</string>
+    <string name="home_notices_error">An error has occurred retrieving the notices</string>
+    <string name="home_action_search_stops">Search stops…</string>
+
+    <string name="unknown">Unknown</string>
+
+    <string name="confirm_delete_card_title">Delete card</string>
+    <string name="confirm_delete_card_message">Are you sure you want to remove the card?</string>
+
+    <string name="date_format_day_month_year">yyyy-MM-dd</string>
+    <string name="date_format_hours_minutes">HH:mm</string>
+
+    <string name="duration_unknown">Unknown time</string>
+    <string name="duration_more_than_30_min">More than 30 minutes</string>
+    <string name="duration_format_minutes">%d min</string>
+
+    <string name="error_opening_map_dialog_title">Coundn\'t open the map</string>
+    <string name="error_opening_map_dialog_body">Check if you have any maps app installed.</string>
+
+    <string name="error_no_browser_installed">You don\'t have any browser installed.</string>
+
+    <string name="cards_empty_hint">You don\'t have any card saved. Add one pressing the button below!</string>
+    <string name="error_sync_cards">Error updating cards information</string>
+    <string name="add_card_dialog_title">Add card</string>
+    <string name="edit_card_dialog_title">Edit card</string>
+    <string name="card_number">Card number</string>
+    <string name="card_custom_name_optional">Name (optional)</string>
+    <string name="error_add_card">Card couldn\'t be added</string>
+    <string name="success_add_card">Card added successfully</string>
+    <string name="error_add_card_empty">Card number can\'t be empty</string>
+    <plurals name="card_trips_format">
+        <item quantity="one">%d trip</item>
+        <item quantity="other">%d trips</item>
+    </plurals>
+
+    <string name="about_app_version_format">v%s</string>
+    <string name="about_description">A modern, open-source Android app for real-time bus information in Seville, Spain.</string>
+    <string name="about_disclaimer_title">Disclaimer</string>
+    <string name="about_disclaimer">TussApp is not affiliated in any way with TUSSAM. The data shown is extracted from the TUSSAM API and this may change or stop working at any time.</string>
+    <string name="about_source_code_title">I\'m open source!</string>
+    <string name="about_source_code">Check the source code at https://github.com/javdc/TussApp</string>
+    <string name="about_made_with_love_footer">Made with &#9829; by Javi</string>
+    <string name="about_issues_title">Issues? Suggestions?</string>
+    <string name="about_issues">You can report issues or make suggestions at https://github.com/javdc/TussApp/issues</string>
+
+</resources>

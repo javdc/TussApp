@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favoriteStopButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:insetTop="0dp"
+    android:insetBottom="0dp"
+    android:layout_margin="8dp"
+    android:textColor="@android:color/white"
+    android:textSize="24sp"
+    android:backgroundTint="@color/tussam_red"
+    app:cornerRadius="8dp"
+    tools:text="123"
+    tools:ignore="UnusedAttribute" />

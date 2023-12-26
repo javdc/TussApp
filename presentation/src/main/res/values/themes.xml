@@ -1,0 +1,50 @@
+<resources>
+
+    <style name="Base.Theme.TussApp" parent="Theme.Material3.DynamicColors.DayNight">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="toolbarStyle">@style/Theme.TussApp.Toolbar</item>
+        <item name="tabStyle">@style/Theme.TussApp.Tab</item>
+        <item name="circularProgressIndicatorStyle">@style/Theme.TussApp.CircularProgressIndicator</item>
+        <item name="linearProgressIndicatorStyle">@style/Theme.TussApp.LinearProgressIndicator</item>
+
+        <item name="enterAnim">@anim/nav_default_enter_anim</item>
+        <item name="exitAnim">@anim/nav_default_exit_anim</item>
+        <item name="popEnterAnim">@anim/nav_default_pop_enter_anim</item>
+        <item name="popExitAnim">@anim/nav_default_pop_exit_anim</item>
+    </style>
+
+    <style name="Theme.TussApp" parent="Base.Theme.TussApp">
+        <!-- overridden in v23 & v27-->
+    </style>
+
+    <style name="Theme.TussApp.Toolbar" parent="Widget.Material3.Toolbar.Surface">
+        <item name="android:background">?attr/colorSurfaceContainer</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+    </style>
+
+    <style name="Theme.TussApp.Toolbar.WithNavigationIcon">
+        <item name="navigationIcon">@drawable/ic_back</item>
+        <item name="navigationIconTint">?attr/colorOnBackground</item>
+        <item name="navigationContentDescription">@string/action_back</item>
+    </style>
+
+    <style name="Theme.TussApp.Tab" parent="Widget.Material3.TabLayout">
+        <item name="android:background">?attr/colorSurfaceContainer</item>
+    </style>
+
+    <style name="Theme.TussApp.CircularProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="showAnimationBehavior">outward</item>
+        <item name="hideAnimationBehavior">inward</item>
+        <item name="showDelay">600</item>
+        <item name="indicatorSize">48dp</item>
+    </style>
+
+    <style name="Theme.TussApp.LinearProgressIndicator" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="showAnimationBehavior">outward</item>
+        <item name="hideAnimationBehavior">inward</item>
+        <item name="showDelay">600</item>
+    </style>
+
+</resources>

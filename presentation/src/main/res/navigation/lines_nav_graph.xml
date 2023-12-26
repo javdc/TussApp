@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lines_navigation"
+    app:startDestination="@id/linesFragment">
+
+    <fragment
+        android:id="@+id/linesFragment"
+        android:name="com.javdc.tussapp.presentation.ui.lines.LinesFragment"
+        android:label="@string/lines"
+        tools:layout="@layout/fragment_lines" >
+
+        <action
+            android:id="@+id/actionLinesFragmentToStopsFragment"
+            app:destination="@id/lineDirectionsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/lineDirectionsFragment"
+        android:name="com.javdc.tussapp.presentation.ui.stops.LineDirectionsFragment"
+        android:label="@string/stops"
+        tools:layout="@layout/fragment_direction_stops">
+
+        <argument
+            android:name="availableLine"
+            app:argType="com.javdc.tussapp.presentation.model.LineVo" />
+
+        <argument
+            android:name="selectedDateTime"
+            app:argType="string"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/actionLinesFragmentToTimeEstimatesFragment"
+            app:destination="@id/stopEstimatesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/stopEstimatesFragment"
+        android:name="com.javdc.tussapp.presentation.ui.estimates.StopEstimatesFragment"
+        android:label="@string/stop_estimates"
+        tools:layout="@layout/fragment_stop_estimates">
+
+        <argument
+            android:name="stopCode"
+            app:argType="integer" />
+
+    </fragment>
+
+</navigation>

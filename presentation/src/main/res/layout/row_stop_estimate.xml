@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="16dp">
+
+    <TextView
+        android:id="@+id/stopEstimateLineCodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:paddingHorizontal="2dp"
+        android:minWidth="48dp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:background="@drawable/rounded_solid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="01" />
+
+    <TextView
+        android:id="@+id/stopEstimateDestinationTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toTopOf="@id/stopEstimateTimeLeftTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/stopEstimateLineCodeTextView"
+        app:layout_constraintTop_toTopOf="@id/stopEstimateLineCodeTextView"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Lorem Ipsum" />
+
+    <TextView
+        android:id="@+id/stopEstimateTimeLeftTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/stopEstimateLineCodeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/stopEstimateDestinationTextView"
+        app:layout_constraintTop_toBottomOf="@id/stopEstimateDestinationTextView"
+        tools:text="12 min" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

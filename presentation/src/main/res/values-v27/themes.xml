@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="Theme.TussApp" parent="Base.Theme.TussApp">
+        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+</resources>

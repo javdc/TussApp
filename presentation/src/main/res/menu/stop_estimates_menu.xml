@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/stop_estimates_open_in_map"
+        android:icon="@drawable/ic_map"
+        android:title="@string/action_remove_open_in_map"
+        android:contentDescription="@string/action_remove_open_in_map"
+        android:visible="false"
+        app:showAsAction="ifRoom"
+        tools:visible="true" />
+
+    <item
+        android:id="@+id/stop_estimates_favorite"
+        android:icon="@drawable/ic_favorite_off"
+        android:title="@string/action_add_to_favorites"
+        android:contentDescription="@string/action_add_to_favorites"
+        android:visible="false"
+        app:showAsAction="always"
+        tools:visible="true" />
+
+</menu>

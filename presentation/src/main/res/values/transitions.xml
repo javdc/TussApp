@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="row_line_transition_name" translatable="false">line_%d</string>
+    <string name="line_directions_transition_name" translatable="false">line_directions</string>
+    <string name="row_stop_transition_name" translatable="false">stop_%d</string>
+    <string name="row_stop_suggestion_transition_name" translatable="false">stop_suggestion_%d</string>
+    <string name="row_home_search_view_transition_name" translatable="false">home_search_view</string>
+    <string name="row_favorite_stop_transition_name" translatable="false">favorite_stop_%d</string>
+    <string name="stop_estimates_transition_name" translatable="false">stop_estimates</string>
+</resources>

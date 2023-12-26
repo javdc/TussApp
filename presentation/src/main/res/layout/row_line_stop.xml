@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:clipToPadding="false"
+    android:paddingHorizontal="16dp">
+
+    <View
+        android:id="@+id/lineStopTopLineView"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
+        android:background="@color/tussam_red"
+        app:layout_constraintBottom_toTopOf="@id/lineStopIconView"
+        app:layout_constraintEnd_toEndOf="@id/lineStopIconView"
+        app:layout_constraintStart_toStartOf="@id/lineStopIconView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/lineStopIconView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/stop_circle"
+        app:layout_constraintBottom_toBottomOf="@id/lineStopDescriptionTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/lineStopDescriptionTextView" />
+
+    <View
+        android:id="@+id/lineStopBottomLineView"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
+        android:background="@color/tussam_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/lineStopIconView"
+        app:layout_constraintStart_toStartOf="@id/lineStopIconView"
+        app:layout_constraintTop_toBottomOf="@id/lineStopIconView" />
+
+    <TextView
+        android:id="@+id/lineStopDescriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:ellipsize="marquee"
+        android:fontFamily="sans-serif-medium"
+        android:singleLine="true"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/lineStopNumberTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lineStopIconView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Lorem Ipsum" />
+
+    <TextView
+        android:id="@+id/lineStopNumberTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/lineStopDescriptionTextView"
+        app:layout_constraintTop_toBottomOf="@id/lineStopDescriptionTextView"
+        tools:text="Stop 123" />
+
+    <TextView
+        android:id="@+id/lineStopScheduleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/lineStopNumberTextView"
+        app:layout_constraintTop_toBottomOf="@id/lineStopNumberTextView"
+        tools:text="00:00 - 23:59" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

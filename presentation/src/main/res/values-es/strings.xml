@@ -1,0 +1,88 @@
+<resources>
+
+    <string name="home">Inicio</string>
+    <string name="lines">Líneas</string>
+    <string name="cards">Tarjetas</string>
+    <string name="stops">Paradas</string>
+    <string name="stop_estimates">Estimaciones</string>
+    <string name="about">Acerca de</string>
+
+    <string name="action_retry">Reintentar</string>
+    <string name="action_delete">Borrar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_back">Atrás</string>
+    <string name="action_add_to_favorites">Añadir a favoritos</string>
+    <string name="action_remove_from_favorites">Eliminar de favoritos</string>
+    <string name="action_remove_open_in_map">Abrir en mapa</string>
+    <string name="action_recharge_card">Recargar tarjeta</string>
+    <string name="action_add_card">Añadir tarjeta</string>
+    <string name="action_add">Añadir</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_save">Guardar</string>
+
+    <string name="error_generic">Error</string>
+    <string name="error_generic_with_http_code">Error %d</string>
+    <string name="error_generic_description">Ha ocurrido un error. Espera unos segundos e inténtalo de nuevo.</string>
+
+    <string name="error_connection_error">Error de conexión</string>
+    <string name="error_connection_error_description">Ha ocurrido un error al conectar con el servidor. Comprueba tu conexión o inténtalo más tarde.</string>
+
+    <string name="error_timeout_error">Tiempo de espera agotado</string>
+    <string name="error_timeout_error_description">El servidor ha tardado demasiado en responder. Comprueba tu conexión o inténtalo más tarde.</string>
+
+    <string name="error_empty_response_error">Respuesta vacía</string>
+    <string name="error_empty_response_error_description">La respuesta está vacía cuando no debería estarlo. Inténtalo más tarde.</string>
+
+    <string name="line_format">Línea %s</string>
+    <string name="stop_format">Parada %d</string>
+    <string name="direction_format">Dirección %d</string>
+
+    <string name="home_favorite_stops_title">Paradas favoritas</string>
+    <string name="home_favorite_stops_empty">No tienes paradas en favoritos. ¡Busca una y guárdala en favoritos para que aparezca aquí!</string>
+    <string name="home_notices_title">Avisos</string>
+    <string name="home_notices_empty">No hay avisos recientes</string>
+    <string name="home_notices_error">Ha ocurrido un error al obtener los avisos</string>
+    <string name="home_action_search_stops">Buscar paradas…</string>
+
+    <string name="unknown">Desconocido</string>
+
+    <string name="confirm_delete_card_title">Borrar tarjeta</string>
+    <string name="confirm_delete_card_message">¿Estás seguro de que quieres borrar la tarjeta?</string>
+
+    <string name="date_format_day_month_year">dd/MM/yyyy</string>
+    <string name="date_format_hours_minutes">HH:mm</string>
+
+    <string name="duration_unknown">Tiempo desconocido</string>
+    <string name="duration_more_than_30_min">Más de 30 minutos</string>
+    <string name="duration_format_minutes">%d min</string>
+
+    <string name="error_opening_map_dialog_title">No se pudo abrir el mapa</string>
+    <string name="error_opening_map_dialog_body">Comprueba que tengas alguna aplicación de mapas instalada.</string>
+
+    <string name="error_no_browser_installed">No tienes ningún navegador instalado.</string>
+
+    <string name="cards_empty_hint">No tienes ninguna tarjeta guardada. ¡Añade una pulsando el botón de abajo!</string>
+    <string name="error_sync_cards">Error al actualizar la información de las tarjetas</string>
+    <string name="add_card_dialog_title">Añadir tarjeta</string>
+    <string name="edit_card_dialog_title">Editar tarjeta</string>
+    <string name="card_number">Número de tarjeta</string>
+    <string name="card_custom_name_optional">Nombre (opcional)</string>
+    <string name="error_add_card">No se ha podido añadir la tarjeta</string>
+    <string name="success_add_card">Tarjeta añadida correctamente</string>
+    <string name="error_add_card_empty">El número no puede estar vacío</string>
+    <plurals name="card_trips_format">
+        <item quantity="one">%d viaje</item>
+        <item quantity="other">%d viajes</item>
+    </plurals>
+
+    <string name="about_app_version_format">v%s</string>
+    <string name="about_description">Una aplicación moderna y de código abierto para ver la información de los autobuses de Sevilla.</string>
+    <string name="about_disclaimer_title">Descargo de responsabilidad</string>
+    <string name="about_disclaimer">TussApp no está afiliado de ninguna forma con TUSSAM. Los datos mostrados son extraídos de la API de TUSSAM y esta podría cambiar o dejar de funcionar en cualquier momento.</string>
+    <string name="about_source_code_title">¡Soy de código abierto!</string>
+    <string name="about_source_code">Puedes consultar el código fuente en https://github.com/javdc/TussApp</string>
+    <string name="about_made_with_love_footer">Hecho con &#9829; por Javi</string>
+    <string name="about_issues_title">¿Problemas? ¿Sugerencias?</string>
+    <string name="about_issues">Puedes reportar errores o hacer sugerencias en https://github.com/javdc/TussApp/issues</string>
+
+</resources>

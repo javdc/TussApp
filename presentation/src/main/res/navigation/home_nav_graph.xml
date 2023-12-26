@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.javdc.tussapp.presentation.ui.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/actionHomeFragmentToTimeEstimatesFragment"
+            app:destination="@id/stopEstimatesFragment" />
+
+        <action
+            android:id="@+id/actionHomeFragmentToAboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/stopEstimatesFragment"
+        android:name="com.javdc.tussapp.presentation.ui.estimates.StopEstimatesFragment"
+        android:label="@string/stop_estimates"
+        tools:layout="@layout/fragment_stop_estimates">
+
+        <argument
+            android:name="stopCode"
+            app:argType="integer" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.javdc.tussapp.presentation.ui.about.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>
