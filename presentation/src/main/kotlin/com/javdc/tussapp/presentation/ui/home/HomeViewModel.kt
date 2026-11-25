@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.javdc.tussapp.domain.model.FavoriteStopBo
 import com.javdc.tussapp.domain.model.NoticeBo
 import com.javdc.tussapp.domain.model.StopBo
+import com.javdc.tussapp.domain.usecase.AddStopToFavoritesUseCase
 import com.javdc.tussapp.domain.usecase.GetFavoriteStopsUseCase
 import com.javdc.tussapp.domain.usecase.GetNoticesUseCase
 import com.javdc.tussapp.domain.usecase.GetStopsWithLinesFromLocalUseCase
@@ -18,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,6 +28,7 @@ class HomeViewModel @Inject constructor(
     private val getFavoriteStopsUseCase: GetFavoriteStopsUseCase,
     private val syncAllUseCase: SyncAllUseCase,
     private val getStopsWithLinesFromLocalUseCase: GetStopsWithLinesFromLocalUseCase,
+    private val addStopToFavoritesUseCase: AddStopToFavoritesUseCase,
 ) : ViewModel() {
 
     private val _noticesLiveData = MutableLiveData<AsyncResult<List<NoticeBo>>>()
@@ -102,6 +105,13 @@ class HomeViewModel @Inject constructor(
             } else {
                 _stopSuggestionsLiveData.postValue(stops.toList())
             }
+        }
+    }
+
+    /** Adds the given stops to favorites, keeping the existing ones. */
+    suspend fun importFavoriteStops(stopCodes: Collection<Int>) {
+        withContext(Dispatchers.IO) {
+            stopCodes.forEach { addStopToFavoritesUseCase(it) }
         }
     }
 

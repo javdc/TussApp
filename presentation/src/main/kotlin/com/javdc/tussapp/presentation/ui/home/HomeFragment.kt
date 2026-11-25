@@ -43,6 +43,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             uri?.let { exportFavoriteStops(it) }
         }
 
+    private val importFavoritesLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri?.let { importFavoriteStops(it) }
+        }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpPostponedEnterTransition(view)
@@ -71,6 +76,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         } else {
                             exportFavoritesLauncher.launch("tussapp_favoritos_${LocalDate.now()}.json")
                         }
+                        true
+                    }
+                    R.id.home_import_favorites -> {
+                        // Some file managers don't tag .json files as application/json
+                        importFavoritesLauncher.launch(arrayOf("application/json", "text/plain", "application/octet-stream"))
                         true
                     }
                     R.id.home_about -> {
@@ -197,6 +207,44 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
             showSnackbar(if (success) R.string.export_favorites_success else R.string.export_favorites_error)
         }
+    }
+
+    private fun importFavoriteStops(uri: Uri) {
+        val contentResolver = requireContext().contentResolver
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val stopCodes = withContext(Dispatchers.IO) {
+                runCatching {
+                    val text = contentResolver.openInputStream(uri)?.use { it.bufferedReader().readText() }
+                        ?: error("Could not open input stream")
+                    parseFavoriteStops(text)
+                }.getOrNull()
+            }
+
+            if (stopCodes.isNullOrEmpty()) {
+                showSnackbar(R.string.import_favorites_error)
+            } else {
+                viewModel.importFavoriteStops(stopCodes)
+                showSnackbar(getString(R.string.import_favorites_success, stopCodes.size))
+            }
+        }
+    }
+
+    /**
+     * Accepts the exported format `{"favorite_stops": [123, 456]}`
+     * and also a plain array `[123, 456]`.
+     */
+    private fun parseFavoriteStops(text: String): Set<Int> {
+        val trimmed = text.trim()
+        val array = if (trimmed.startsWith("[")) {
+            JSONArray(trimmed)
+        } else {
+            JSONObject(trimmed).getJSONArray("favorite_stops")
+        }
+        return (0 until array.length())
+            .mapNotNull { array.optString(it).trim().toIntOrNull() }
+            .filter { it > 0 }
+            .toSet()
     }
 
     private fun navigateToTimeEstimates(stopCode: Int, viewForAnimation: View) {

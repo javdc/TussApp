@@ -91,4 +91,7 @@
     <string name="export_favorites_success">Favorite stops exported</string>
     <string name="export_favorites_error">Could not export favorite stops</string>
     <string name="export_favorites_empty">You don\'t have any favorite stops to export</string>
+    <string name="action_import_favorites">Import favorite stops</string>
+    <string name="import_favorites_success">%d favorite stops imported</string>
+    <string name="import_favorites_error">Could not import favorite stops. Make sure the file was exported from TussApp</string>
 </resources>

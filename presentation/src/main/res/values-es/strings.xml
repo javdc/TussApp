@@ -89,4 +89,7 @@
     <string name="export_favorites_success">Paradas favoritas exportadas</string>
     <string name="export_favorites_error">No se han podido exportar las paradas favoritas</string>
     <string name="export_favorites_empty">No tienes paradas favoritas que exportar</string>
+    <string name="action_import_favorites">Importar paradas favoritas</string>
+    <string name="import_favorites_success">%d paradas favoritas importadas</string>
+    <string name="import_favorites_error">No se han podido importar las paradas favoritas. Comprueba que el archivo se exportó desde TussApp</string>
 </resources>

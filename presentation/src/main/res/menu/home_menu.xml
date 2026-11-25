@@ -9,6 +9,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/home_import_favorites"
+        android:title="@string/action_import_favorites"
+        android:contentDescription="@string/action_import_favorites"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/home_about"
         android:icon="@drawable/ic_info"
         android:title="@string/about"
