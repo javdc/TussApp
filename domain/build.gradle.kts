@@ -12,8 +12,10 @@ java {
     targetCompatibility = AppConfig.javaTargetCompatibility
 }
 
-kotlin {
-    jvmToolchain(AppConfig.kotlinJvmToolchainJdkVersion)
+// Don't require a JDK 8 toolchain installed: compile with the JDK running Gradle
+// (e.g. the one bundled with Android Studio) and just target Java 8 bytecode.
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.jvmTarget = AppConfig.kotlinJvmTarget
 }
 
 dependencies {

@@ -14,5 +14,4 @@ object AppConfig {
     val javaSourceCompatibility = JavaVersion.VERSION_1_8
     val javaTargetCompatibility = JavaVersion.VERSION_1_8
     const val kotlinJvmTarget = "1.8"
-    const val kotlinJvmToolchainJdkVersion = 8
 }
