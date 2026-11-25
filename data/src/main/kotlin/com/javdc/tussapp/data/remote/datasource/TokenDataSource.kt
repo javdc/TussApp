@@ -19,11 +19,16 @@ class TokenDataSourceImpl(
         sharedPreferences.getString(KEY_ACCESS_TOKEN, null)
 
     override suspend fun refreshToken(): String? {
-        val response = tryOrNull("Error getting token from remote data source", "TokenDataSourceImpl") {
-            sharedPreferences.getString(KEY_REFRESH_TOKEN, null)
-                ?.let { refreshTokenFromRemote(it) }
-                ?: getTokenFromRemote()
-        }
+        // If the refresh token is expired/invalid, fall back to a full password login
+        val response = sharedPreferences.getString(KEY_REFRESH_TOKEN, null)
+            ?.let { refreshToken ->
+                tryOrNull("Error refreshing token", "TokenDataSourceImpl") {
+                    refreshTokenFromRemote(refreshToken)
+                }
+            }
+            ?: tryOrNull("Error getting token from remote data source", "TokenDataSourceImpl") {
+                getTokenFromRemote()
+            }
 
         sharedPreferences.edit()
             .putString(KEY_ACCESS_TOKEN, response?.accessToken)

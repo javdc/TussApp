@@ -3,31 +3,38 @@ package com.javdc.tussapp.data.remote.api.interceptor
 import com.javdc.tussapp.data.remote.datasource.TokenDataSource
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.Response
 
 class OAuthInterceptor(private val tokenDataSource: TokenDataSource): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
+
+        // On first launch (or after a failed refresh) there is no stored token.
+        // Previously this sent "Authorization: Bearer null", which the API rejects
+        // with 400 instead of 401, so the refresh logic never ran.
         val token = tokenDataSource.getAccessToken()
+            ?: runBlocking { tokenDataSource.refreshToken() }
 
-        val authenticatedRequest = originalRequest.newBuilder()
-            .header("Authorization", "Bearer $token")
-            .build()
+        val response = chain.proceed(originalRequest.withToken(token))
 
-        val response = chain.proceed(authenticatedRequest)
-
-        if (response.code == 401) {
-            return runBlocking {
-                val newToken = tokenDataSource.refreshToken() ?: return@runBlocking response
-                val newRequest = originalRequest.newBuilder()
-                    .header("Authorization", "Bearer $newToken")
-                    .build()
-                return@runBlocking chain.proceed(newRequest)
-            }
+        if (response.code in RETRY_CODES) {
+            val newToken = runBlocking { tokenDataSource.refreshToken() } ?: return response
+            response.close()
+            return chain.proceed(originalRequest.withToken(newToken))
         }
 
         return response
+    }
+
+    private fun Request.withToken(token: String?): Request =
+        if (token.isNullOrBlank()) this
+        else newBuilder().header("Authorization", "Bearer $token").build()
+
+    private companion object {
+        // The API answers 400 (missing/invalid header) or 401 depending on the token state
+        val RETRY_CODES = setOf(400, 401)
     }
 
 }
