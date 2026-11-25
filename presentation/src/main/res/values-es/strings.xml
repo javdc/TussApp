@@ -85,4 +85,8 @@
     <string name="about_issues_title">¿Problemas? ¿Sugerencias?</string>
     <string name="about_issues">Puedes reportar errores o hacer sugerencias en https://github.com/javdc/TussApp/issues</string>
 
+    <string name="action_export_favorites">Exportar paradas favoritas</string>
+    <string name="export_favorites_success">Paradas favoritas exportadas</string>
+    <string name="export_favorites_error">No se han podido exportar las paradas favoritas</string>
+    <string name="export_favorites_empty">No tienes paradas favoritas que exportar</string>
 </resources>

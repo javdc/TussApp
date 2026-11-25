@@ -87,4 +87,8 @@
     <string name="about_issues_title">Issues? Suggestions?</string>
     <string name="about_issues">You can report issues or make suggestions at https://github.com/javdc/TussApp/issues</string>
 
+    <string name="action_export_favorites">Export favorite stops</string>
+    <string name="export_favorites_success">Favorite stops exported</string>
+    <string name="export_favorites_error">Could not export favorite stops</string>
+    <string name="export_favorites_empty">You don\'t have any favorite stops to export</string>
 </resources>

@@ -1,11 +1,14 @@
 package com.javdc.tussapp.presentation.ui.home
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.search.SearchView
@@ -14,9 +17,16 @@ import com.javdc.tussapp.presentation.R
 import com.javdc.tussapp.presentation.databinding.FragmentHomeBinding
 import com.javdc.tussapp.presentation.ui.common.BaseFragment
 import com.javdc.tussapp.presentation.util.safeNavigate
+import com.javdc.tussapp.presentation.util.showSnackbar
 import com.javdc.tussapp.presentation.util.setUpExitAndReenterTransitionsForContainerTransform
 import com.javdc.tussapp.presentation.util.setUpPostponedEnterTransition
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.json.JSONObject
+import java.time.LocalDate
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -26,6 +36,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private var noticeAdapter: NoticeAdapter? = null
     private var favoriteStopAdapter: FavoriteStopAdapter? = null
     private var stopSuggestionAdapter: StopSuggestionAdapter? = null
+
+    // Lets the user pick where to save the file (Downloads, Drive, etc.)
+    private val exportFavoritesLauncher =
+        registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+            uri?.let { exportFavoriteStops(it) }
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,6 +65,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding?.apply {
             homeStopsSearchBar.setOnMenuItemClickListener {
                 when (it.itemId) {
+                    R.id.home_export_favorites -> {
+                        if (viewModel.favoriteStopsLiveData.value.isNullOrEmpty()) {
+                            showSnackbar(R.string.export_favorites_empty)
+                        } else {
+                            exportFavoritesLauncher.launch("tussapp_favoritos_${LocalDate.now()}.json")
+                        }
+                        true
+                    }
                     R.id.home_about -> {
                         findNavController().safeNavigate(HomeFragmentDirections.actionHomeFragmentToAboutFragment())
                         true
@@ -154,6 +178,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     }
                 }
             }
+        }
+    }
+
+    private fun exportFavoriteStops(uri: Uri) {
+        val stopCodes = viewModel.favoriteStopsLiveData.value.orEmpty().map { it.code }.sorted()
+        val json = JSONObject()
+            .put("favorite_stops", JSONArray(stopCodes))
+            .toString(2)
+        val contentResolver = requireContext().contentResolver
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val success = withContext(Dispatchers.IO) {
+                runCatching {
+                    contentResolver.openOutputStream(uri)?.use { it.write(json.toByteArray()) }
+                        ?: error("Could not open output stream")
+                }.isSuccess
+            }
+            showSnackbar(if (success) R.string.export_favorites_success else R.string.export_favorites_error)
         }
     }
 
