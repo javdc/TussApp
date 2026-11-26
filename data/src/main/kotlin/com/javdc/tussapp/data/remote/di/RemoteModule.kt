@@ -7,6 +7,7 @@ import com.javdc.tussapp.data.remote.api.CardService
 import com.javdc.tussapp.data.remote.api.DateService
 import com.javdc.tussapp.data.remote.api.NoticeService
 import com.javdc.tussapp.data.remote.api.StopService
+import com.javdc.tussapp.data.remote.api.interceptor.DeviceIdInterceptor
 import com.javdc.tussapp.data.remote.api.interceptor.OAuthInterceptor
 import com.javdc.tussapp.data.remote.datasource.CardRemoteDataSource
 import com.javdc.tussapp.data.remote.datasource.CardRemoteDataSourceImpl
@@ -47,11 +48,21 @@ object RemoteModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor, oAuthInterceptor: OAuthInterceptor): OkHttpClient =
+    fun provideDeviceIdInterceptor(sharedPreferences: SharedPreferences): DeviceIdInterceptor =
+        DeviceIdInterceptor(sharedPreferences)
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        deviceIdInterceptor: DeviceIdInterceptor,
+        oAuthInterceptor: OAuthInterceptor,
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)
+            .addInterceptor(deviceIdInterceptor)
             .addInterceptor(oAuthInterceptor)
             .addInterceptor(loggingInterceptor)
             .build()
