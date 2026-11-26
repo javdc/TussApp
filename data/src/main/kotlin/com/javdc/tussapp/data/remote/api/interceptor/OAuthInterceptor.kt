@@ -19,7 +19,7 @@ class OAuthInterceptor(private val tokenDataSource: TokenDataSource): Intercepto
 
         val response = chain.proceed(originalRequest.withToken(token))
 
-        if (response.code in RETRY_CODES) {
+        if (response.code == 401) {
             val newToken = runBlocking { tokenDataSource.refreshToken() } ?: return response
             response.close()
             return chain.proceed(originalRequest.withToken(newToken))
@@ -31,10 +31,5 @@ class OAuthInterceptor(private val tokenDataSource: TokenDataSource): Intercepto
     private fun Request.withToken(token: String?): Request =
         if (token.isNullOrBlank()) this
         else newBuilder().header("Authorization", "Bearer $token").build()
-
-    private companion object {
-        // The API answers 400 (missing/invalid header) or 401 depending on the token state
-        val RETRY_CODES = setOf(400, 401)
-    }
 
 }
